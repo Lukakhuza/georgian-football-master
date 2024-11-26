@@ -61,17 +61,18 @@ export default function PlayerDetails() {
             })
             .map((player) => (
               <div key={player.id} className={classes["player-details"]}>
-                <img
-                  src={`https://geofootball.s3.us-east-1.amazonaws.com/players/${player.image.src}`}
-                  alt={`picture of ${player.id}`}
-                />
-                <div key={player.id}>{player["last-name"]}</div>
-                <p>{player.number}</p>
-                <p>
-                  {player["first-name"]} {player["last-name"]}{" "}
-                </p>
-                <p>{player.team}</p>
-                <p>Goals in the national team: {player.goals}</p>
+                <div>
+                  <img
+                    src={`https://geofootball.s3.us-east-1.amazonaws.com/players/${player.image.src}`}
+                    alt={`picture of ${player.id}`}
+                  />
+                  <p className={classes["player-name"]}>
+                    {player["first-name"]} {player["last-name"]}{" "}
+                  </p>
+                  <p>Number: {player.number}</p>
+                  <p>Team: {player.team}</p>
+                  <p>Goals in the National Team: {player.goals}</p>
+                </div>
               </div>
             ))}
 
