@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Stadiums.module.css";
+// import StadiumDetails from "../components/StadiumDetails";
 
 function getStadiumData() {
   return fetch(
@@ -26,6 +27,7 @@ export default function Stadiums({
 
   return (
     <div className={classes["container"]}>
+      {/* <StadiumDetails></StadiumDetails> */}
       <main className={classes["stadiums-category"]}>
         <h2>{title}</h2>
         <ul className={classes["stadiums"]}>
