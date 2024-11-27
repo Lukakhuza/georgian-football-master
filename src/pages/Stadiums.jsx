@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import classes from "./Stadiums.module.css";
+import { StadiumSelectionContextProvider } from "../store/StadiumSelectionContext";
+// import { StadiumSelectionContext } from "../store/StadiumSelectionContext";
 // import StadiumDetails from "../components/StadiumDetails";
+import StadiumSelectionContext from "../store/StadiumSelectionContext";
 
 function getStadiumData() {
   return fetch(
@@ -20,12 +23,18 @@ export default function Stadiums({
   loadingText,
 }) {
   const [stadiums, setStadiums] = useState([]);
-
+  const stadiumCtx = useContext(StadiumSelectionContext);
   useEffect(() => {
     getStadiumData().then((stadiums) => setStadiums(stadiums));
   }, []);
 
+  function handleSelectStadium(stadium) {
+    stadiumCtx.selectStadium(stadium);
+    console.log(stadium);
+  }
+
   return (
+    // <StadiumSelectionContextProvider>
     <div className={classes["container"]}>
       {/* <StadiumDetails></StadiumDetails> */}
       <main className={classes["stadiums-category"]}>
@@ -34,7 +43,7 @@ export default function Stadiums({
           {stadiums.map((stadium) => (
             //
             <li key={stadium.id} className={classes["stadium-item"]}>
-              <button onClick={() => onSelectStadium()}>
+              <button onClick={() => handleSelectStadium(stadium)}>
                 <img
                   src={`https://geofootball.s3.us-east-1.amazonaws.com/stadiums/${stadium.image.src}`}
                   alt={`${stadium.id}`}
@@ -46,5 +55,6 @@ export default function Stadiums({
         </ul>
       </main>
     </div>
+    // </StadiumSelectionContextProvider>
   );
 }

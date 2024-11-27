@@ -7,6 +7,8 @@ import RootLayout from "./pages/Root";
 import HomePage from "./pages/Home";
 import PlayerDetails from "./pages/PlayerDetails";
 import ContactUs from "./pages/ContactUs";
+import { StadiumSelectionContextProvider } from "./store/StadiumSelectionContext";
+import StadiumDetails from "./components/StadiumDetails";
 // import { SquadContext } from "./store/context";
 // import SquadContext from "./store/context.js";
 
@@ -22,13 +24,18 @@ const router = createBrowserRouter([
         path: "/stadiums",
         element: <Stadiums title="Stadiums in Georgia" />,
       },
+      { path: "/stadiumdetails", element: <StadiumDetails /> },
       { path: "/contactUs", element: <ContactUs title="Contact Us" /> },
     ],
   },
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <StadiumSelectionContextProvider>
+      <RouterProvider router={router} />
+    </StadiumSelectionContextProvider>
+  );
 }
 
 export default App;
