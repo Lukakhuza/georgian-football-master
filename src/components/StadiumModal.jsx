@@ -1,23 +1,23 @@
-import StadiumDetails from "./StadiumDetails";
-import { motion } from "framer-motion";
-import { forwardRef } from "react";
+// import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 
-const StadiumsModal = forwardRef(function StadiumModal({ props }, ref) {
-  if (props) {
-    console.log(props.id);
-  }
-  return (
+export default function StadiumModal({ children, open, className = " " }) {
+  // const dialog = useRef();
+
+  // useEffect(() => {
+  //   if (open) {
+  //     dialog.current.showModal();
+  //   }
+  // }, [open]);
+
+  return createPortal(
     <dialog
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 30 }}
-      ref={ref}
-      className="result-modal"
+      // ref={dialog}
+      open
+      // className={`modal ${className}`}
     >
-      {!props && <p>Fetching Data</p>}
-      {props && <StadiumDetails props={props} />}
-    </dialog>
+      {children}
+    </dialog>,
+    document.getElementById("modal")
   );
-});
-
-export default StadiumsModal;
+}
