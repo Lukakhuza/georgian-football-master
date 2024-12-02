@@ -5,6 +5,7 @@ import { StadiumSelectionContextProvider } from "../store/StadiumSelectionContex
 // import { StadiumSelectionContext } from "../store/StadiumSelectionContext";
 import StadiumDetails from "../components/StadiumDetails";
 import StadiumSelectionContext from "../store/StadiumSelectionContext";
+import StadiumModal from "../components/StadiumModal";
 
 function getStadiumData() {
   return fetch(
@@ -39,7 +40,7 @@ export default function Stadiums({
   return (
     // <StadiumSelectionContextProvider>
     <>
-      {showStadium && <StadiumDetails />}
+      {showStadium && <StadiumModal />}
       <div className={classes["container"]}>
         {/* <StadiumDetails></StadiumDetails> */}
         <main className={classes["stadiums-category"]}>
