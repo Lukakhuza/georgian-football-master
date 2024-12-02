@@ -1,0 +1,10 @@
+.modal {
+    background-color: yellow;
+    align-items: center;
+    display: flex;
+    justify-content: left;
+}
+
+.modal h2 {
+    background-color: green;
+}

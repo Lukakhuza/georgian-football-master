@@ -1,21 +1,10 @@
 // import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import classes from "./StadiumModal.module.css";
 
-export default function StadiumModal({ children, open, className = " " }) {
-  // const dialog = useRef();
-
-  // useEffect(() => {
-  //   if (open) {
-  //     dialog.current.showModal();
-  //   }
-  // }, [open]);
-
+export default function StadiumModal({ children }) {
   return createPortal(
-    <dialog
-      // ref={dialog}
-      open
-      // className={`modal ${className}`}
-    >
+    <dialog open className={classes["modal"]}>
       {children}
     </dialog>,
     document.getElementById("modal")
