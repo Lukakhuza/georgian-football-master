@@ -6,6 +6,7 @@ import { StadiumSelectionContextProvider } from "../store/StadiumSelectionContex
 import StadiumDetails from "../components/StadiumDetails";
 import StadiumSelectionContext from "../store/StadiumSelectionContext";
 import StadiumModal from "../components/StadiumModal";
+import { name } from "ejs";
 
 function getStadiumData() {
   return fetch(
@@ -26,6 +27,11 @@ export default function Stadiums({
 }) {
   const [stadiums, setStadiums] = useState([]);
   const [showStadium, setShowStadium] = useState(false);
+  // const [selectedStadium, setSelectedStadium] = useState({
+  //   id: "",
+  //   name: "",
+  //   city: "",
+  // });
   const stadiumCtx = useContext(StadiumSelectionContext);
   useEffect(() => {
     getStadiumData().then((stadiums) => setStadiums(stadiums));
@@ -33,14 +39,24 @@ export default function Stadiums({
 
   function handleSelectStadium(stadium) {
     stadiumCtx.selectStadium(stadium);
+    // setSelectedStadium({
+    //   id: stadium.id,
+    //   name: stadium.name,
+    //   city: stadium.city,
+    // });
     setShowStadium(true);
+
     console.log(stadium);
+  }
+
+  function handleClose() {
+    setShowStadium(false);
   }
 
   return (
     // <StadiumSelectionContextProvider>
     <>
-      {showStadium && <StadiumModal />}
+      {showStadium && <StadiumModal onClose={handleClose} />}
       <div className={classes["container"]}>
         {/* <StadiumDetails></StadiumDetails> */}
         <main className={classes["stadiums-category"]}>
